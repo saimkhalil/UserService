@@ -1,8 +1,0 @@
-  spring:
-    data:
-    mongodb:
-      username: ausaf
-      password: abc
-      database: sample
-      port: 27017
-      host: localhost
