@@ -3,6 +3,7 @@ package com.example.ecommerce.app.Persistence.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Document(value = "EcommerceUser")
 public class EcommerceUser
 {
@@ -11,6 +12,24 @@ public class EcommerceUser
     private String name;
     private String email;
     private String contact;
+    private String country;
+    private String city;
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCity() {
+        return city;
+    }
 
     public String getId() {
         return id;
@@ -46,11 +65,13 @@ public class EcommerceUser
 
     @Override
     public String toString() {
-        return "User{" +
+        return "EcommerceUser{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

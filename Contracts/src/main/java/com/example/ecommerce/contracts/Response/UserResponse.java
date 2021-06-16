@@ -1,6 +1,6 @@
-package com.example.ecommerce.contracts.Request;
+package com.example.ecommerce.contracts.Response;
 
-public class UserRequest
+public class UserResponse
 {
     private String name;
     private String email;
@@ -24,39 +24,30 @@ public class UserRequest
         return city;
     }
 
-    public String getName() {
-        return name;
+    public UserResponse() {
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getContact() {
-        return contact;
     }
 
     public void setContact(String contact) {
         this.contact = contact;
     }
 
-    @Override
-    public String toString() {
-        return "UserRequest{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", contact='" + contact + '\'' +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+    public String getContact() {
+        return contact;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
     }
 }
-
