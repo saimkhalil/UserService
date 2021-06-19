@@ -1,5 +1,9 @@
 package com.example.ecommerce.contracts.Response;
 
+import com.example.ecommerce.contracts.Enums.Role;
+
+import java.util.List;
+
 public class UserResponse
 {
     private String name;
@@ -7,6 +11,34 @@ public class UserResponse
     private String contact;
     private String country;
     private String city;
+    private Long creationTime;
+    private boolean isActive;
+
+    public Long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public void setCountry(String country) {
         this.country = country;

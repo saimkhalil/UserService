@@ -60,20 +60,16 @@ public class UserController
     public ResponseModel<UserResponse> fetchUserByName(@RequestParam String id)
     {
         ResponseModel<UserResponse> responseModel = new ResponseModel<>();
-        if (null != id)
-            id = id.trim();
 
-        if (null == id || "".equals(id))
+        if (null == id || "".equals(id.trim()))
         {
             responseModel.setMessage("Empty user id");
             responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
         }
+
         else
         {
-            UserResponse userResponse = userService.fetchUserById(id);
-            responseModel.setData(userResponse);
-            responseModel.setHttpStatus(HttpStatus.OK);
-            responseModel.setMessage("User fetched successfully");
+            responseModel = userService.fetchUserById(id);
         }
 
         return responseModel;
@@ -91,11 +87,43 @@ public class UserController
         else
         {
             List<UserResponse> userResponses = userService.fetchUsers(city);
-            responseModel.setData(userResponses);
-            responseModel.setHttpStatus(HttpStatus.OK);
-            responseModel.setMessage("Users fetched by city");
+            if (userResponses.size() == 0)
+            {
+                responseModel.setMessage("No user exists living in the following city");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+                responseModel.setData(null);
+            }
+            else
+            {
+                responseModel.setData(userResponses);
+                responseModel.setHttpStatus(HttpStatus.OK);
+                responseModel.setMessage("Users fetched by city");
+            }
 
         }
+        return responseModel;
+    }
+
+    @RequestMapping(value = "/deactivateById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseModel<String> deactivateById(@RequestParam String id)
+    {
+        ResponseModel<String> responseModel = new ResponseModel<>();
+
+        if (null == id || "".equals(id.trim()))
+        {
+            responseModel.setMessage("Empty user id");
+            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+        }
+
+
+        else
+        {
+            String userResponse = userService.deactivateById(id);
+            responseModel.setData(userResponse);
+            responseModel.setHttpStatus(HttpStatus.OK);
+
+        }
+
         return responseModel;
     }
 

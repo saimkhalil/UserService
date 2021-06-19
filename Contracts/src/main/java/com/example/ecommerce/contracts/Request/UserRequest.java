@@ -1,12 +1,30 @@
 package com.example.ecommerce.contracts.Request;
 
+
+import com.example.ecommerce.contracts.Enums.Role;
+
+import java.util.List;
+
 public class UserRequest
 {
+
     private String name;
     private String email;
     private String contact;
     private String country;
     private String city;
+
+
+
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public void setCountry(String country) {
         this.country = country;
@@ -56,6 +74,7 @@ public class UserRequest
                 ", contact='" + contact + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

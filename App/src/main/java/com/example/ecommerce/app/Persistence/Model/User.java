@@ -1,11 +1,14 @@
 package com.example.ecommerce.app.Persistence.Model;
 
+import com.example.ecommerce.contracts.Enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 
-@Document(value = "EcommerceUser")
-public class EcommerceUser
+
+@Document(value = "User")
+public class User
 {
     @Id
     private String id;
@@ -14,6 +17,35 @@ public class EcommerceUser
     private String contact;
     private String country;
     private String city;
+    private boolean isActive;
+    private Long creationTime;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    private List<Role> roles;
+
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public void setCountry(String country) {
         this.country = country;
@@ -63,15 +95,18 @@ public class EcommerceUser
         this.contact = contact;
     }
 
+
+
     @Override
     public String toString() {
-        return "EcommerceUser{" +
+        return "User{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

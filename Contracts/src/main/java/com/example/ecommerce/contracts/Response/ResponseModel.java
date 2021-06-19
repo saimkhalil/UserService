@@ -8,6 +8,8 @@ public class ResponseModel<T>
     private T data;
     private HttpStatus httpStatus;
 
+
+
     public T getData() {
         return data;
     }

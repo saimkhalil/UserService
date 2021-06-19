@@ -1,21 +1,23 @@
 package com.example.ecommerce.contracts.Enums;
 
-import org.springframework.stereotype.Component;
-
-public enum Test
+public enum Role
 {
-    {student, teacher, admin;}
-    private String role;
+    STUDENT("STUDENT"),
+    TEACHER("TEACHER"),
+    ADMIN("ADMIN");
 
-    public Test(roleType type) {
-        this.role = type.toString();
+    private String val;
+
+    Role(String val) {
+        this.val = val;
     }
 
-    public String getRole() {
-        return role;
+    public String getVal() {
+        return val;
     }
 
-    public void setRole(roleType type) {
-        this.role = type.toString();
+    public void setVal(String val) {
+        this.val = val;
     }
 }
+
