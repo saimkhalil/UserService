@@ -1,5 +1,6 @@
 package com.example.ecommerce.contracts.Response;
 
+import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Enums.Role;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public class UserResponse
     private String email;
     private String contact;
     private String country;
-    private String city;
+    private City city;
     private Long creationTime;
     private boolean isActive;
 
@@ -44,7 +45,7 @@ public class UserResponse
         this.country = country;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -52,7 +53,7 @@ public class UserResponse
         return country;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 

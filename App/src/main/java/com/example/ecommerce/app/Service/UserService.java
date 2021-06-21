@@ -1,7 +1,7 @@
 package com.example.ecommerce.app.Service;
 
 import com.example.ecommerce.app.Persistence.Model.User;
-import com.example.ecommerce.app.Persistence.Repository.UserRepository;
+import com.example.ecommerce.app.Persistence.Repository.UserRepoCustom;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class UserService
 {
     @Autowired
-    private UserRepository userRepository;
+    private UserRepoCustom userRepository;
 
     public ResponseModel<String> createUser(UserRequest userRequest)
     {
@@ -98,23 +98,10 @@ public class UserService
         return userResponses;
     }
 
-    public String deactivateById(String id)
+    public String updateStatus(String id, boolean status)
     {
-
-        Optional<User> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent())
-        {
-            User user = userOptional.get();
-            user.setActive(false);
-            userRepository.save(user);
-            return "User deactivated successfully";
-        }
-        else
-        {
-            return "User with given id does not exist";
-        }
-
-
+        userRepository.updateActiveStatus(id, status);
+        return "Successfully updated status.";
     }
 
 

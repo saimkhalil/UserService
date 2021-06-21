@@ -1,5 +1,6 @@
 package com.example.ecommerce.app.Persistence.Model;
 
+import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,7 +17,7 @@ public class User
     private String email;
     private String contact;
     private String country;
-    private String city;
+    private City city;
     private boolean isActive;
     private Long creationTime;
 
@@ -51,7 +52,7 @@ public class User
         this.country = country;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -59,7 +60,7 @@ public class User
         return country;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
@@ -109,4 +110,15 @@ public class User
                 ", roles=" + roles +
                 '}';
     }
+
+    public static class Constants
+    {
+        public static final String ID = "id";
+        public static final String CITY = "city";
+        private static final String COUNTRY = "country";
+        private static final String NAME  = "name";
+        private static final String CONTACT  = "contact";
+
+    }
+
 }

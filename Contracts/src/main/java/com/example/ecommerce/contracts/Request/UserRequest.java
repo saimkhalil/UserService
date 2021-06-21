@@ -1,6 +1,7 @@
 package com.example.ecommerce.contracts.Request;
 
 
+import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Enums.Role;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class UserRequest
     private String email;
     private String contact;
     private String country;
-    private String city;
+    private City city;
 
 
 
@@ -30,7 +31,7 @@ public class UserRequest
         this.country = country;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -38,7 +39,7 @@ public class UserRequest
         return country;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
@@ -73,7 +74,7 @@ public class UserRequest
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
                 ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
+                ", city=" + city +
                 ", roles=" + roles +
                 '}';
     }

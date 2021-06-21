@@ -23,36 +23,35 @@ public class UserController
     {
         ResponseModel<String> responseModel = new ResponseModel<String>();
 
-        if (null == userRequest.getName() || "".equals(userRequest.getName().trim()))
+        try {
+            if (null == userRequest.getName() || "".equals(userRequest.getName().trim())) {
+
+                throw new NullPointerException();
+
+            } else if (null == userRequest.getContact() || "".equals(userRequest.getContact().trim())) {
+                responseModel.setMessage("Empty user contact");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            } else if (null == userRequest.getEmail() || "".equals(userRequest.getEmail().trim())) {
+                responseModel.setMessage("Empty user email");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            } else if (null == userRequest.getCountry() || "".equals(userRequest.getCountry().trim())) {
+                responseModel.setMessage("Empty user country");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            } else if (null == userRequest.getCity()) {
+                responseModel.setMessage("Empty user city");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            } else if (null == userRequest.getRoles()) {
+                responseModel.setMessage("Role not defined");
+                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            } else {
+                responseModel = userService.createUser(userRequest);
+            }
+        }
+        catch (NullPointerException e)
         {
             responseModel.setMessage("Empty user name");
             responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
         }
-        else if (null == userRequest.getContact() || "".equals(userRequest.getContact().trim()))
-        {
-            responseModel.setMessage("Empty user contact");
-            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-        }
-        else if (null == userRequest.getEmail() || "".equals(userRequest.getEmail().trim()))
-        {
-            responseModel.setMessage("Empty user email");
-            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-        }
-        else if (null == userRequest.getCountry() || "".equals(userRequest.getCountry().trim()))
-        {
-            responseModel.setMessage("Empty user country");
-            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-        }
-        else if (null == userRequest.getCity() || "".equals(userRequest.getCity().trim()))
-        {
-            responseModel.setMessage("Empty user city");
-            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-        }
-        else
-        {
-            responseModel = userService.createUser(userRequest);
-        }
-
         return responseModel;
     }
 
@@ -104,8 +103,8 @@ public class UserController
         return responseModel;
     }
 
-    @RequestMapping(value = "/deactivateById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseModel<String> deactivateById(@RequestParam String id)
+    @RequestMapping(value = "/updateStatus", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseModel<String> updateStatus(@RequestParam("id") String id, @RequestParam("status") boolean status)
     {
         ResponseModel<String> responseModel = new ResponseModel<>();
 
@@ -118,7 +117,7 @@ public class UserController
 
         else
         {
-            String userResponse = userService.deactivateById(id);
+            String userResponse = userService.updateStatus(id, status);
             responseModel.setData(userResponse);
             responseModel.setHttpStatus(HttpStatus.OK);
 
