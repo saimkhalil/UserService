@@ -97,7 +97,6 @@ public class User
     }
 
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -106,7 +105,9 @@ public class User
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
                 ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
+                ", city=" + city +
+                ", isActive=" + isActive +
+                ", creationTime=" + creationTime +
                 ", roles=" + roles +
                 '}';
     }
@@ -115,9 +116,12 @@ public class User
     {
         public static final String ID = "id";
         public static final String CITY = "city";
-        private static final String COUNTRY = "country";
-        private static final String NAME  = "name";
-        private static final String CONTACT  = "contact";
+        public static final String COUNTRY = "country";
+        public static final String NAME  = "name";
+        public static final String CONTACT  = "contact";
+        public static final String IS_ACTIVE = "isActive";
+        public static final String EMAIL = "email";
+
 
     }
 

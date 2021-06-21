@@ -38,6 +38,10 @@ public class UserValidator
 
     public void validateStatusRequest(String id, boolean status) throws SError
     {
+        if (null == id || "".equals(id.trim()))
+        {
+            throw new SError("Not a valid id", HttpStatus.BAD_REQUEST);
+        }
 
     }
 

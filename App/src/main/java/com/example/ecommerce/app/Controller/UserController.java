@@ -99,7 +99,7 @@ public class UserController
         }
         catch (SError se)
         {
-
+            throw new NullPointerException();
         }
 
 

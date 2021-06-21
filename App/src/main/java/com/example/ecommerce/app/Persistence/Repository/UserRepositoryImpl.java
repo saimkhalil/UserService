@@ -31,7 +31,7 @@ public class UserRepositoryImpl implements UserRepository
         Query query = new Query();
         query.addCriteria(Criteria.where(User.Constants.ID).is(id));
         Update update = new Update();
-        update.set("isActive", status);
+        update.set(User.Constants.IS_ACTIVE, status);
         UpdateResult result = mongoTemplate.updateFirst(query, update, User.class);
         return result.getModifiedCount();
     }
@@ -40,7 +40,8 @@ public class UserRepositoryImpl implements UserRepository
     public Optional<List<User>> findByCity(String city) {
         Query query = new Query();
         query.addCriteria(Criteria.where(User.Constants.CITY).is(city));
-        query.fields().include(User.Constants.ID, "name", "city", "email");
+        query.fields().include(User.Constants.ID,
+                User.Constants.NAME, User.Constants.CITY, User.Constants.EMAIL);
         return Optional.of(mongoTemplate.find(query, User.class));
     }
 
