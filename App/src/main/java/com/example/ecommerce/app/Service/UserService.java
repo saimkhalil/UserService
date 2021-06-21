@@ -1,5 +1,6 @@
 package com.example.ecommerce.app.Service;
 
+import com.example.ecommerce.app.Mapper.UserMapper;
 import com.example.ecommerce.app.Persistence.Model.User;
 import com.example.ecommerce.app.Persistence.Repository.UserRepoCustom;
 import com.example.ecommerce.contracts.Request.UserRequest;
@@ -19,9 +20,12 @@ public class UserService
     @Autowired
     private UserRepoCustom userRepository;
 
+    @Autowired
+    private UserMapper userMapper;
+
     public ResponseModel<String> createUser(UserRequest userRequest)
     {
-        //use mapper to do this operation
+        User user = userMapper.mapUserRequestToUser(userRequest);
         user.setActive(true);
         long currentTime = System.currentTimeMillis();
         user.setCreationTime(currentTime);

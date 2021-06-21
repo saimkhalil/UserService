@@ -34,6 +34,7 @@ public class UserValidator
         {
             throw new SError("Empty user roles", HttpStatus.BAD_REQUEST);
         }
+        else if (null == userRequest.
     }
 
     //validate ...
