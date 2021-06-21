@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRequestValidator
+public class UserValidator
 {
     public void validateUserRequest(UserRequest userRequest) throws SError
     {
@@ -35,4 +35,6 @@ public class UserRequestValidator
             throw new SError("Empty user roles", HttpStatus.BAD_REQUEST);
         }
     }
+
+    //validate ...
 }

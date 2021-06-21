@@ -21,6 +21,9 @@ public class UserRepoCustomImpl implements UserRepoCustom
         this.mongoTemplate = mongoTemplate;
     }
 
+
+    //use proper constant names.
+
     @Override
     public void updateActiveStatus(String id, boolean status)
     {
@@ -35,7 +38,7 @@ public class UserRepoCustomImpl implements UserRepoCustom
     public Optional<List<User>> findByCity(String city) {
         Query query = new Query();
         query.addCriteria(Criteria.where(User.Constants.CITY).is(city));
-        query.fields().include("_id", "name", "city", "email");
+        query.fields().include(User.Constants.ID, "name", "city", "email");
         return Optional.of(mongoTemplate.find(query, User.class));
     }
 

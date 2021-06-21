@@ -21,13 +21,7 @@ public class UserService
 
     public ResponseModel<String> createUser(UserRequest userRequest)
     {
-        User user = new User();
-        user.setName(userRequest.getName());
-        user.setContact(userRequest.getContact());
-        user.setEmail(userRequest.getEmail());
-        user.setCity(userRequest.getCity());
-        user.setCountry(userRequest.getCountry());
-        user.setRoles(userRequest.getRoles());
+        //use mapper to do this operation
         user.setActive(true);
         long currentTime = System.currentTimeMillis();
         user.setCreationTime(currentTime);

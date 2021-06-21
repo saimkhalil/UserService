@@ -2,7 +2,7 @@ package com.example.ecommerce.app.Controller;
 
 import com.example.ecommerce.app.Service.UserService;
 import com.example.ecommerce.app.Utils.SError;
-import com.example.ecommerce.app.Validator.UserRequestValidator;
+import com.example.ecommerce.app.Validator.UserValidator;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -21,7 +21,7 @@ public class UserController
     private UserService userService;
 
     @Autowired
-    private UserRequestValidator requestValidator;
+    private UserValidator requestValidator;
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseModel<String> createUser(@RequestBody UserRequest userRequest)
@@ -93,23 +93,22 @@ public class UserController
     {
         ResponseModel<String> responseModel = new ResponseModel<>();
 
+        //validate both the fields in validator.
+
         if (null == id || "".equals(id.trim()))
         {
             responseModel.setMessage("Empty user id");
             responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
         }
-
-
         else
         {
             String userResponse = userService.updateStatus(id, status);
             responseModel.setData(userResponse);
             responseModel.setHttpStatus(HttpStatus.OK);
-
         }
 
         return responseModel;
     }
 
-
+    //create an api to delete a user. Only Admin can call this api. If any other user tries to delete a user throw Forbidden exception.
 }
