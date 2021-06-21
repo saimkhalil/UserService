@@ -3,6 +3,7 @@ package com.example.ecommerce.app.Controller;
 import com.example.ecommerce.app.Service.UserService;
 import com.example.ecommerce.app.Utils.SError;
 import com.example.ecommerce.app.Validator.UserValidator;
+import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -60,31 +61,24 @@ public class UserController
     }
 
     @RequestMapping(value= "/fetchUsers", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseModel<List<UserResponse>> fetchUsersByCity(@RequestParam String city)
+    public ResponseModel<List<UserResponse>> fetchUsersByCity(@RequestParam City city)
     {
         ResponseModel<List<UserResponse>> responseModel = new ResponseModel<>();
-        if (null == city || "".equals(city.trim()))
+
+        List<UserResponse> userResponses = userService.fetchUsers(city.getVal());
+        if (userResponses.size() == 0)
         {
-            responseModel.setMessage("Empty user city");
+            responseModel.setMessage("No user exists living in the following city");
             responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            responseModel.setData(null);
         }
         else
         {
-            List<UserResponse> userResponses = userService.fetchUsers(city);
-            if (userResponses.size() == 0)
-            {
-                responseModel.setMessage("No user exists living in the following city");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-                responseModel.setData(null);
-            }
-            else
-            {
-                responseModel.setData(userResponses);
-                responseModel.setHttpStatus(HttpStatus.OK);
-                responseModel.setMessage("Users fetched by city");
-            }
-
+            responseModel.setData(userResponses);
+            responseModel.setHttpStatus(HttpStatus.OK);
+            responseModel.setMessage("Users fetched by city");
         }
+
         return responseModel;
     }
 

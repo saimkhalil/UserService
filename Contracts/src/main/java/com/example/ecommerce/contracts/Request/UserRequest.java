@@ -14,9 +14,6 @@ public class UserRequest
     private String contact;
     private String country;
     private City city;
-
-
-
     private List<Role> roles;
 
     public List<Role> getRoles() {
