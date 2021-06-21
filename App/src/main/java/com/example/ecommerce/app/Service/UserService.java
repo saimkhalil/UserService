@@ -46,6 +46,8 @@ public class UserService
         if (optionalUser.isPresent())
         {
             User user = optionalUser.get();
+
+            //map user to user response
             UserResponse userResponse = new UserResponse();
             userResponse.setName(user.getName());
             userResponse.setEmail(user.getEmail());
@@ -83,6 +85,8 @@ public class UserService
         for (User user : users)
         {
             UserResponse u = new UserResponse();
+            //use mapper
+
             u.setName(user.getName());
             u.setContact(user.getContact());
             u.setCity(user.getCity());

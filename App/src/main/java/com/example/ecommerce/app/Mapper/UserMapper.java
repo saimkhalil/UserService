@@ -2,6 +2,7 @@ package com.example.ecommerce.app.Mapper;
 
 import com.example.ecommerce.app.Persistence.Model.User;
 import com.example.ecommerce.contracts.Request.UserRequest;
+import com.example.ecommerce.contracts.Response.UserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,5 +17,11 @@ public class UserMapper
         user.setEmail(userRequest.getEmail());
         user.setCountry(userRequest.getCountry());
         return user;
+    }
+
+    //add a mapper here
+    public UserResponse mapUserToUserResponse(User user)
+    {
+
     }
 }

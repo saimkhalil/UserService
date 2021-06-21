@@ -66,7 +66,7 @@ public class UserController
         ResponseModel<List<UserResponse>> responseModel = new ResponseModel<>();
 
         List<UserResponse> userResponses = userService.fetchUsers(city.getVal());
-        if (userResponses.size() == 0)
+        if (userResponses.isEmpty())
         {
             responseModel.setMessage("No user exists living in the following city");
             responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
