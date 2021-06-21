@@ -1,6 +1,8 @@
 package com.example.ecommerce.app.Controller;
 
 import com.example.ecommerce.app.Service.UserService;
+import com.example.ecommerce.app.Utils.SError;
+import com.example.ecommerce.app.Validator.UserRequestValidator;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -18,39 +20,41 @@ public class UserController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRequestValidator requestValidator;
+
     @RequestMapping(value = "/createUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseModel<String> createUser(@RequestBody UserRequest userRequest)
     {
         ResponseModel<String> responseModel = new ResponseModel<String>();
 
         try {
-            if (null == userRequest.getName() || "".equals(userRequest.getName().trim())) {
-
-                throw new NullPointerException();
-
-            } else if (null == userRequest.getContact() || "".equals(userRequest.getContact().trim())) {
-                responseModel.setMessage("Empty user contact");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-            } else if (null == userRequest.getEmail() || "".equals(userRequest.getEmail().trim())) {
-                responseModel.setMessage("Empty user email");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-            } else if (null == userRequest.getCountry() || "".equals(userRequest.getCountry().trim())) {
-                responseModel.setMessage("Empty user country");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-            } else if (null == userRequest.getCity()) {
-                responseModel.setMessage("Empty user city");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-            } else if (null == userRequest.getRoles()) {
-                responseModel.setMessage("Role not defined");
-                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-            } else {
+//            if (null == userRequest.getName() || "".equals(userRequest.getName().trim())) {
+//
+//                throw new NullPointerException();
+//
+//            } else if (null == userRequest.getContact() || "".equals(userRequest.getContact().trim())) {
+//                responseModel.setMessage("Empty user contact");
+//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            } else if (null == userRequest.getEmail() || "".equals(userRequest.getEmail().trim())) {
+//                responseModel.setMessage("Empty user email");
+//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            } else if (null == userRequest.getCountry() || "".equals(userRequest.getCountry().trim())) {
+//                responseModel.setMessage("Empty user country");
+//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            } else if (null == userRequest.getCity()) {
+//                responseModel.setMessage("Empty user city");
+//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            } else if (null == userRequest.getRoles()) {
+//                responseModel.setMessage("Role not defined");
+//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+                requestValidator.validateUserRequest(userRequest);
                 responseModel = userService.createUser(userRequest);
-            }
         }
-        catch (NullPointerException e)
+        catch (SError se)
         {
-            responseModel.setMessage("Empty user name");
-            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
+            responseModel.setMessage("Invalid input : " + se.getMessage());
+            responseModel.setHttpStatus(se.getHttpStatus());
         }
         return responseModel;
     }
