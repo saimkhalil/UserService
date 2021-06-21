@@ -6,9 +6,9 @@ import com.example.ecommerce.app.Persistence.Model.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepoCustom
+public interface UserRepository
 {
-    void updateActiveStatus(String id, boolean status);
+    long updateActiveStatus(String id, boolean status);
 
     Optional<List<User>> findByCity(String city);
 

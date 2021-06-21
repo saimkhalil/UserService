@@ -1,6 +1,7 @@
 package com.example.ecommerce.app.Persistence.Repository;
 
 import com.example.ecommerce.app.Persistence.Model.User;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -12,12 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserRepoCustomImpl implements UserRepoCustom
+public class UserRepositoryImpl implements UserRepository
 {
     private final MongoTemplate mongoTemplate;
 
     @Autowired
-    public UserRepoCustomImpl(MongoTemplate mongoTemplate) {
+    public UserRepositoryImpl(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 
@@ -25,13 +26,14 @@ public class UserRepoCustomImpl implements UserRepoCustom
     //use proper constant names.
 
     @Override
-    public void updateActiveStatus(String id, boolean status)
+    public long updateActiveStatus(String id, boolean status)
     {
         Query query = new Query();
         query.addCriteria(Criteria.where(User.Constants.ID).is(id));
         Update update = new Update();
         update.set("isActive", status);
-        mongoTemplate.updateFirst(query, update, User.class);
+        UpdateResult result = mongoTemplate.updateFirst(query, update, User.class);
+        return result.getModifiedCount();
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.ecommerce.app.Service;
 
 import com.example.ecommerce.app.Mapper.UserMapper;
 import com.example.ecommerce.app.Persistence.Model.User;
-import com.example.ecommerce.app.Persistence.Repository.UserRepoCustom;
+import com.example.ecommerce.app.Persistence.Repository.UserRepository;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UserService
 {
     @Autowired
-    private UserRepoCustom userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private UserMapper userMapper;
@@ -98,8 +98,11 @@ public class UserService
 
     public String updateStatus(String id, boolean status)
     {
-        userRepository.updateActiveStatus(id, status);
-        return "Successfully updated status.";
+        long modifiedCount = userRepository.updateActiveStatus(id, status);
+        if (modifiedCount == 1)
+            return "Successfully updated status.";
+        else
+            return "Could not update the document";
     }
 
 

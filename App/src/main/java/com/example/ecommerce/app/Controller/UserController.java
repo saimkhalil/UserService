@@ -89,17 +89,18 @@ public class UserController
 
         //validate both the fields in validator.
 
-//        if (null == id || "".equals(id.trim()))
-//        {
-//            responseModel.setMessage("Empty user id");
-//            responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-//        }
-//        else
-//        {
-//            String userResponse = userService.updateStatus(id, status);
-//            responseModel.setData(userResponse);
-//            responseModel.setHttpStatus(HttpStatus.OK);
-//        }
+        try
+        {
+            requestValidator.validateStatusRequest(id, status);
+            String userResponse = userService.updateStatus(id, status);
+            responseModel.setData(userResponse);
+            responseModel.setHttpStatus(HttpStatus.OK);
+
+        }
+        catch (SError se)
+        {
+
+        }
 
 
         return responseModel;
