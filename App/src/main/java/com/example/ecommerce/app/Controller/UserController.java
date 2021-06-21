@@ -29,25 +29,6 @@ public class UserController
         ResponseModel<String> responseModel = new ResponseModel<String>();
 
         try {
-//            if (null == userRequest.getName() || "".equals(userRequest.getName().trim())) {
-//
-//                throw new NullPointerException();
-//
-//            } else if (null == userRequest.getContact() || "".equals(userRequest.getContact().trim())) {
-//                responseModel.setMessage("Empty user contact");
-//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-//            } else if (null == userRequest.getEmail() || "".equals(userRequest.getEmail().trim())) {
-//                responseModel.setMessage("Empty user email");
-//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-//            } else if (null == userRequest.getCountry() || "".equals(userRequest.getCountry().trim())) {
-//                responseModel.setMessage("Empty user country");
-//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-//            } else if (null == userRequest.getCity()) {
-//                responseModel.setMessage("Empty user city");
-//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
-//            } else if (null == userRequest.getRoles()) {
-//                responseModel.setMessage("Role not defined");
-//                responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
                 requestValidator.validateUserRequest(userRequest);
                 responseModel = userService.createUser(userRequest);
         }
