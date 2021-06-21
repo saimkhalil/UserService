@@ -4,6 +4,7 @@ import com.example.ecommerce.app.Service.UserService;
 import com.example.ecommerce.app.Utils.SError;
 import com.example.ecommerce.app.Validator.UserValidator;
 import com.example.ecommerce.contracts.Enums.City;
+import com.example.ecommerce.contracts.Enums.Role;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import com.example.ecommerce.contracts.Response.ResponseModel;
 import com.example.ecommerce.contracts.Response.UserResponse;
@@ -107,4 +108,25 @@ public class UserController
     }
 
     //create an api to delete a user. Only Admin can call this api. If any other user tries to delete a user throw Forbidden exception.
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseModel<String> deleteUser(@RequestParam("id") String callingUserId , @RequestParam("id") String userId)
+    {
+        ResponseModel<String> responseModel = new ResponseModel<>();
+        try
+        {
+            requestValidator.deleteStatusRequest(callingUserId, userId);
+            String userResponse = userService.deletedUser(callingUserId, userId);
+            responseModel.setData(userResponse);
+
+        }
+        catch (SError se)
+        {
+            throw new NullPointerException();
+        }
+
+        return responseModel;
+
+    }
+
 }

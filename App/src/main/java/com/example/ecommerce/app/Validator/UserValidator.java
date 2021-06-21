@@ -1,9 +1,12 @@
 package com.example.ecommerce.app.Validator;
 
 import com.example.ecommerce.app.Utils.SError;
+import com.example.ecommerce.contracts.Enums.Role;
 import com.example.ecommerce.contracts.Request.UserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserValidator
@@ -43,6 +46,14 @@ public class UserValidator
             throw new SError("Not a valid id", HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    public void deleteStatusRequest(String callingUserId , String userId) throws SError
+    {
+        if (null == callingUserId || "".equals(callingUserId.trim()) || null == userId || "".equals(userId.trim()))
+        {
+            throw new SError("Not a valid id",  HttpStatus.BAD_REQUEST);
+        }
     }
 
     //validate ...

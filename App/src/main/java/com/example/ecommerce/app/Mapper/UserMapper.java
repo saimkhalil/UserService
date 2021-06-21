@@ -22,6 +22,15 @@ public class UserMapper
     //add a mapper here
     public UserResponse mapUserToUserResponse(User user)
     {
-
+        UserResponse userResponse = new UserResponse();
+        userResponse.setName(user.getName());
+        userResponse.setEmail(user.getEmail());
+        userResponse.setCountry(user.getCountry());
+        userResponse.setCity(user.getCity());
+        userResponse.setContact(user.getContact());
+        userResponse.setRoles(user.getRoles());
+        userResponse.setCreationTime(user.getCreationTime());
+        userResponse.setActive(user.isActive());
+        return userResponse;
     }
 }

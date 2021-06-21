@@ -121,7 +121,7 @@ public class User
         public static final String CONTACT  = "contact";
         public static final String IS_ACTIVE = "isActive";
         public static final String EMAIL = "email";
-
+        public static final String ROLES = "roles";
 
     }
 

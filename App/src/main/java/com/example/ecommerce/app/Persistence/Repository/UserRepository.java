@@ -15,4 +15,6 @@ public interface UserRepository
     Optional<User> findById(String id);
 
     User save(User user);
+
+    boolean checkIfAdmin(String callingUserId , String userId);
 }

@@ -56,4 +56,13 @@ public class UserRepositoryImpl implements UserRepository
     {
         return mongoTemplate.save(user);
     }
+
+    @Override
+    public boolean checkIfAdmin(String callingUserId, String userId)
+    {
+        Query query = new Query();
+        query.addCriteria((Criteria.where(User.Constants.ID).is(callingUserId)));
+        query.addCriteria((Criteria.where(User.Constants.ROLES)).is("ADMIN"));
+        return !mongoTemplate.find(query, User.class).isEmpty();
+    }
 }

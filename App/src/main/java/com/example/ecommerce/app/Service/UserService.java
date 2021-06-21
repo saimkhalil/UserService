@@ -46,17 +46,7 @@ public class UserService
         if (optionalUser.isPresent())
         {
             User user = optionalUser.get();
-
-            //map user to user response
-            UserResponse userResponse = new UserResponse();
-            userResponse.setName(user.getName());
-            userResponse.setEmail(user.getEmail());
-            userResponse.setCountry(user.getCountry());
-            userResponse.setCity(user.getCity());
-            userResponse.setContact(user.getContact());
-            userResponse.setRoles(user.getRoles());
-            userResponse.setCreationTime(user.getCreationTime());
-            userResponse.setActive(user.isActive());
+            UserResponse userResponse = userMapper.mapUserToUserResponse(user);
             response.setData(userResponse);
             response.setHttpStatus(HttpStatus.OK);
             response.setMessage("User fetched successfully");
@@ -84,17 +74,7 @@ public class UserService
 
         for (User user : users)
         {
-            UserResponse u = new UserResponse();
-            //use mapper
-
-            u.setName(user.getName());
-            u.setContact(user.getContact());
-            u.setCity(user.getCity());
-            u.setCountry(user.getCountry());
-            u.setEmail(user.getEmail());
-            u.setRoles(user.getRoles());
-            u.setCreationTime(user.getCreationTime());
-            u.setActive(user.isActive());
+            UserResponse u = userMapper.mapUserToUserResponse(user);
             userResponses.add(u);
         }
         return userResponses;
@@ -109,5 +89,25 @@ public class UserService
             return "Could not update the document";
     }
 
+    public String deletedUser(String callingUserId, String userId)
+    {
+        boolean isAdmin = userRepository.checkIfAdmin(callingUserId,userId)
+        if (isAdmin)
+        {
+            long modifiedCount = userRepository.updateActiveStatus(userId, false);
+            if (modifiedCount == 1)
+            {
+                return "User has been deleted successfully";
+            }
+            else
+            {
+                return "Users forbidden to use this API, only Admins are allowed";
+            }
+        }
+        else
+        {
+            return "Users forbidden to use this API, only Admins are allowed";
+        }
+    }
 
 }
