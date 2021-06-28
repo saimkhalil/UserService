@@ -1,11 +1,11 @@
-package com.example.ecommerce.app.Service;
+package com.example.authserver.app.Service;
 
-import com.example.ecommerce.app.Mapper.UserMapper;
-import com.example.ecommerce.app.Persistence.Model.User;
-import com.example.ecommerce.app.Persistence.Repository.UserRepository;
-import com.example.ecommerce.contracts.Request.UserRequest;
-import com.example.ecommerce.contracts.Response.ResponseModel;
-import com.example.ecommerce.contracts.Response.UserResponse;
+import com.example.authserver.app.Persistence.Model.User;
+import com.example.authserver.app.Mapper.UserMapper;
+import com.example.authserver.app.Persistence.Repository.UserRepository;
+import com.example.authserver.contracts.Request.UserRequest;
+import com.example.authserver.contracts.Response.ResponseModel;
+import com.example.authserver.contracts.Response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

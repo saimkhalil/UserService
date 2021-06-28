@@ -1,4 +1,4 @@
-package com.example.ecommerce.app;
+package com.example.authserver.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

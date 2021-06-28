@@ -1,12 +1,9 @@
-package com.example.ecommerce.app.Validator;
+package com.example.authserver.app.Validator;
 
-import com.example.ecommerce.app.Utils.SError;
-import com.example.ecommerce.contracts.Enums.Role;
-import com.example.ecommerce.contracts.Request.UserRequest;
+import com.example.authserver.app.Utils.SError;
+import com.example.authserver.contracts.Request.UserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class UserValidator

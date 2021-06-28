@@ -1,7 +1,7 @@
-package com.example.ecommerce.app.Persistence.Model;
+package com.example.authserver.app.Persistence.Model;
 
-import com.example.ecommerce.contracts.Enums.City;
-import com.example.ecommerce.contracts.Enums.Role;
+import com.example.authserver.contracts.Enums.City;
+import com.example.authserver.contracts.Enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

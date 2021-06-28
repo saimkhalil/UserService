@@ -1,4 +1,4 @@
-package com.example.ecommerce.contracts.Response;
+package com.example.authserver.contracts.Response;
 
 import org.springframework.http.HttpStatus;
 

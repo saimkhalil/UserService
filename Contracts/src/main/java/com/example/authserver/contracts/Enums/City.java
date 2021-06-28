@@ -1,4 +1,4 @@
-package com.example.ecommerce.contracts.Enums;
+package com.example.authserver.contracts.Enums;
 
 public enum City
 {

@@ -1,13 +1,12 @@
-package com.example.ecommerce.app.Controller;
+package com.example.authserver.app.Controller;
 
-import com.example.ecommerce.app.Service.UserService;
-import com.example.ecommerce.app.Utils.SError;
-import com.example.ecommerce.app.Validator.UserValidator;
-import com.example.ecommerce.contracts.Enums.City;
-import com.example.ecommerce.contracts.Enums.Role;
-import com.example.ecommerce.contracts.Request.UserRequest;
-import com.example.ecommerce.contracts.Response.ResponseModel;
-import com.example.ecommerce.contracts.Response.UserResponse;
+import com.example.authserver.app.Service.UserService;
+import com.example.authserver.app.Utils.SError;
+import com.example.authserver.app.Validator.UserValidator;
+import com.example.authserver.contracts.Enums.City;
+import com.example.authserver.contracts.Request.UserRequest;
+import com.example.authserver.contracts.Response.ResponseModel;
+import com.example.authserver.contracts.Response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

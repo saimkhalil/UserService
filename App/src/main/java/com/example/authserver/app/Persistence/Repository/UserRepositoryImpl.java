@@ -1,6 +1,6 @@
-package com.example.ecommerce.app.Persistence.Repository;
+package com.example.authserver.app.Persistence.Repository;
 
-import com.example.ecommerce.app.Persistence.Model.User;
+import com.example.authserver.app.Persistence.Model.User;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

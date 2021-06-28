@@ -1,7 +1,7 @@
-package com.example.ecommerce.app.Persistence.Repository;
+package com.example.authserver.app.Persistence.Repository;
 
 
-import com.example.ecommerce.app.Persistence.Model.User;
+import com.example.authserver.app.Persistence.Model.User;
 
 import java.util.List;
 import java.util.Optional;

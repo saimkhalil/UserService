@@ -1,4 +1,4 @@
-package com.example.ecommerce.app.Utils;
+package com.example.authserver.app.Utils;
 
 import org.springframework.http.HttpStatus;
 

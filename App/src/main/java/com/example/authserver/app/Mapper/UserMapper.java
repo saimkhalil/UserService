@@ -1,8 +1,8 @@
-package com.example.ecommerce.app.Mapper;
+package com.example.authserver.app.Mapper;
 
-import com.example.ecommerce.app.Persistence.Model.User;
-import com.example.ecommerce.contracts.Request.UserRequest;
-import com.example.ecommerce.contracts.Response.UserResponse;
+import com.example.authserver.app.Persistence.Model.User;
+import com.example.authserver.contracts.Request.UserRequest;
+import com.example.authserver.contracts.Response.UserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
