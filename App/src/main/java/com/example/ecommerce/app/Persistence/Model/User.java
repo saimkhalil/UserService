@@ -1,20 +1,44 @@
-package com.example.ecommerce.contracts.Request;
-
+package com.example.ecommerce.app.Persistence.Model;
 
 import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Enums.Role;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-public class UserRequest
-{
 
+@Document(value = "User")
+public class User
+{
+    @Id
+    private String id;
     private String name;
     private String email;
     private String contact;
     private String country;
     private City city;
+    private boolean isActive;
+    private Long creationTime;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
+    }
+
     private List<Role> roles;
+
 
     public List<Role> getRoles() {
         return roles;
@@ -38,6 +62,14 @@ public class UserRequest
 
     public City getCity() {
         return city;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -64,16 +96,33 @@ public class UserRequest
         this.contact = contact;
     }
 
+
     @Override
     public String toString() {
-        return "UserRequest{" +
-                "name='" + name + '\'' +
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
                 ", country='" + country + '\'' +
                 ", city=" + city +
+                ", isActive=" + isActive +
+                ", creationTime=" + creationTime +
                 ", roles=" + roles +
                 '}';
     }
-}
 
+    public static class Constants
+    {
+        public static final String ID = "id";
+        public static final String CITY = "city";
+        public static final String COUNTRY = "country";
+        public static final String NAME  = "name";
+        public static final String CONTACT  = "contact";
+        public static final String IS_ACTIVE = "isActive";
+        public static final String EMAIL = "email";
+        public static final String ROLES = "roles";
+
+    }
+
+}

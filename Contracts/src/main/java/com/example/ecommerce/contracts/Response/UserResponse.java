@@ -1,19 +1,36 @@
-package com.example.ecommerce.contracts.Request;
-
+package com.example.ecommerce.contracts.Response;
 
 import com.example.ecommerce.contracts.Enums.City;
 import com.example.ecommerce.contracts.Enums.Role;
 
 import java.util.List;
 
-public class UserRequest
+public class UserResponse
 {
-
     private String name;
     private String email;
     private String contact;
     private String country;
     private City city;
+    private Long creationTime;
+    private boolean isActive;
+
+    public Long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     private List<Role> roles;
 
     public List<Role> getRoles() {
@@ -40,40 +57,30 @@ public class UserRequest
         return city;
     }
 
-    public String getName() {
-        return name;
+    public UserResponse() {
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getContact() {
-        return contact;
     }
 
     public void setContact(String contact) {
         this.contact = contact;
     }
 
-    @Override
-    public String toString() {
-        return "UserRequest{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", contact='" + contact + '\'' +
-                ", country='" + country + '\'' +
-                ", city=" + city +
-                ", roles=" + roles +
-                '}';
+    public String getContact() {
+        return contact;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
     }
 }
-

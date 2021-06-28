@@ -1,9 +1,20 @@
 package com.example.ecommerce.app.Persistence.Repository;
 
-import com.example.ecommerce.app.Persistence.Model.EcommerceUser;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends MongoRepository<EcommerceUser, String> {
+import com.example.ecommerce.app.Persistence.Model.User;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserRepository
+{
+    long updateActiveStatus(String id, boolean status);
+
+    Optional<List<User>> findByCity(String city);
+
+    Optional<User> findById(String id);
+
+    User save(User user);
+
+    boolean checkIfAdmin(String callingUserId , String userId);
 }
