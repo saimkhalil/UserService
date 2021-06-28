@@ -91,7 +91,7 @@ public class UserService
 
     public String deletedUser(String callingUserId, String userId)
     {
-        boolean isAdmin = userRepository.checkIfAdmin(callingUserId,userId)
+        boolean isAdmin = userRepository.checkIfAdmin(callingUserId,userId);
         if (isAdmin)
         {
             long modifiedCount = userRepository.updateActiveStatus(userId, false);
