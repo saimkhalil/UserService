@@ -1,6 +1,7 @@
 package com.example.authserver.app.Persistence.Repository;
 
 import com.example.authserver.app.Persistence.Model.User;
+import com.example.authserver.contracts.Enums.Role;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -48,7 +49,7 @@ public class UserRepositoryImpl implements UserRepository
     @Override
     public Optional<User> findById(String id)
     {
-        return Optional.ofNullable(mongoTemplate.findById(User.Constants.ID,User.class));
+        return Optional.ofNullable(mongoTemplate.findById(id,User.class));
     }
 
     @Override
@@ -62,7 +63,7 @@ public class UserRepositoryImpl implements UserRepository
     {
         Query query = new Query();
         query.addCriteria((Criteria.where(User.Constants.ID).is(callingUserId)));
-        query.addCriteria((Criteria.where(User.Constants.ROLES)).is("ADMIN"));
+        query.addCriteria((Criteria.where(User.Constants.ROLES)).is(Role.ADMIN));
         return !mongoTemplate.find(query, User.class).isEmpty();
     }
 }

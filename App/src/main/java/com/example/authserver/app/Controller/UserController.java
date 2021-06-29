@@ -42,7 +42,7 @@ public class UserController
     }
 
     @RequestMapping(value= "/fetchUserById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseModel<UserResponse> fetchUserByName(@RequestParam String id)
+    public ResponseModel<UserResponse> fetchUserByName(@RequestParam("id") String id)
     {
         ResponseModel<UserResponse> responseModel = new ResponseModel<>();
 
